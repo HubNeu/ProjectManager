@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class InitScreenController{
+public class InitScreenControllerCopy{
     @FXML
     private TextField textUsername;
     @FXML

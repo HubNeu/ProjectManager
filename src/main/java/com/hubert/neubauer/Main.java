@@ -16,18 +16,19 @@ import javafx.stage.Stage;
 public class Main extends Application {
     //Declarations:
     private Stage window = new Stage();
-    private SceneController sceneController = new SceneController();
-    private String firstScreen = "/fxml/InitScreen.fxml";
-    private String secondScreen = "/fxml/SecondScreen.fxml";
+    private SceneController sceneController = new SceneController(window);
+    private String initScreen = "/fxml/InitScreen.fxml";
+    private String aboutScreen = "/fxml/AboutScreen.fxml";
     //declarations//
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        this.window=primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource(firstScreen));
-        window.setScene(new Scene(root,600,400));
-        window.setTitle("First Window");
-        window.show();
+        /*this.window=primaryStage;
+        Parent root = FXMLLoader.load(getClass().getResource(initScreen));
+        window.setScene(new Scene(root));
+        window.setTitle("Project Manager");
+        window.show();*/
+        sceneController.load(initScreen);//make it so that's enough,maybe more arguments if needed
     }
 
     public static void main(String[] args) {
