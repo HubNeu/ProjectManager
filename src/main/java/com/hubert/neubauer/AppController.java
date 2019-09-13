@@ -1,5 +1,6 @@
 package com.hubert.neubauer;
 
+import com.hubert.neubauer.data.tools.DataStore;
 import com.hubert.neubauer.screen.controllers.AboutScreenController;
 import com.hubert.neubauer.screen.controllers.InitScreenController;
 import com.hubert.neubauer.screen.controllers.MainScreenController;
