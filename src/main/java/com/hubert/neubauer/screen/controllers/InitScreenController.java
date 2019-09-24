@@ -1,5 +1,6 @@
 package com.hubert.neubauer.screen.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,8 +21,8 @@ public class InitScreenController{
     private String msgLoggingIn = "Logging in...";
     private String msgError ="Login credentials incorrect or not found!";
 
-    public void getInput(){
-
+    public void getInput(ActionEvent ae){
+        System.out.println("button pressed");
     }
 
     public void login(){
@@ -29,20 +30,6 @@ public class InitScreenController{
     }
 
     public void about(){
-        try{
-
-            Parent fxmlLayout = FXMLLoader.load(getClass().getResource("/fxml/AboutScreen.fxml"));
-            Stage aboutStage = new Stage();
-            aboutStage.setTitle("About |Project Manager");
-            aboutStage.initModality(Modality.APPLICATION_MODAL);
-            aboutStage.setScene(new Scene(fxmlLayout));
-            aboutStage.setTitle("Project Manager");
-            aboutStage.setResizable(false);
-            aboutStage.show();
-        }catch (Exception e){
-            System.out.println("Message: "+"\n"+e.getMessage());
-            System.out.println("Stack Trace: "+"\n"+e.getStackTrace());
-        }
 
     }
 }

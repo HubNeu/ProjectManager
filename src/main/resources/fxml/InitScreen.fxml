@@ -23,10 +23,12 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="textUsername" alignment="CENTER" layoutX="175.0" layoutY="146.0" prefHeight="30.0" prefWidth="250.0" promptText="Username" />
-            <PasswordField fx:id="userPassword" alignment="CENTER" layoutX="175.0" layoutY="203.0" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
+            <TextField fx:id="textUsername" alignment="CENTER" layoutX="175.0" layoutY="146.0" prefHeight="30.0" prefWidth="250.0" />
+            <PasswordField fx:id="userPassword" alignment="CENTER" layoutX="175.0" layoutY="203.0" prefHeight="30.0" prefWidth="250.0" />
             <Button fx:id="buttonLogin" layoutX="250.0" layoutY="253.0" mnemonicParsing="false" onAction="#getInput" prefHeight="30.0" prefWidth="100.0" text="Login" />
             <Label fx:id="labelError" alignment="CENTER" layoutX="175.0" layoutY="94.0" prefHeight="30.0" prefWidth="250.0" text="" textFill="RED" />
+            <Label alignment="CENTER" layoutX="174.0" layoutY="129.0" prefHeight="17.0" prefWidth="250.0" text="Username:" />
+            <Label alignment="CENTER" layoutX="175.0" layoutY="179.0" prefHeight="25.0" prefWidth="250.0" text="Password:" />
          </children>
       </AnchorPane>
    </children>

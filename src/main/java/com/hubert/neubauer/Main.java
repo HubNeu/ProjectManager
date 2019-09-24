@@ -9,7 +9,12 @@ Problems:
  */
 import com.hubert.neubauer.data.tools.DataStore;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class Main extends Application {
     //Declarations:
@@ -19,7 +24,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        System.out.println("Starting...");
         appController.begin(appData);
+        System.out.println("Started...");
     }
 
     public static void main(String[] args) {

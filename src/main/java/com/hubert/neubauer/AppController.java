@@ -1,14 +1,14 @@
 package com.hubert.neubauer;
 
 import com.hubert.neubauer.data.tools.DataStore;
-import com.hubert.neubauer.screen.controllers.AboutScreenController;
 import com.hubert.neubauer.screen.controllers.InitScreenController;
-import com.hubert.neubauer.screen.controllers.MainScreenController;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.stage.Window;
+
+import java.io.IOException;
 
 /**
  * New idea: pass data between controllers, or store them here. Make sure all the data of everything (controllers,
@@ -20,41 +20,31 @@ import java.util.ResourceBundle;
  * call additional functions
  */
 
-public class AppController implements Initializable{
+public class AppController {
     private Stage window = new Stage();
     private String initScreen = "/fxml/InitScreen.fxml";
     private String aboutScreen = "/fxml/aboutScreen.fxml";
     private String secondScreen = "/fxml/secondScreen.fxml";
     private DataStore data;
+    public InitScreenController initScreenController;
 
-    public void begin(DataStore data){
+    public void begin(DataStore data) throws IOException{
         //load the data passed from main, set up all controllers and fxml files, and display the first window
         //load the data:
         loadData(data);
-
-        //set up controllers for the whole app:
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(initScreen));
-        InitScreenController initScreenController = loader.getController();
-        loader = new FXMLLoader(getClass().getResource(aboutScreen));
-        AboutScreenController aboutScreenController = loader.getController();
-        loader = new FXMLLoader(getClass().getResource(secondScreen));
-        MainScreenController mainScreenController = loader.getController();
-
-
-    }
-    public void loadNewScene(Stage stage, String adress){
-
-    }
-    public void loadNewStage(String adress){
+        loadWindow(initScreen);
 
     }
     public void loadData(DataStore dataStore){
         //this will prepare the data for modification
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources){
-
+    public Scene loadScene(String adr) throws IOException{
+        Parent parent = FXMLLoader.load(getClass().getResource(adr));
+        return new Scene(parent);
+    }
+    public void loadWindow(String adr) throws IOException{
+        window.setScene(loadScene(adr));
+        window.show();
     }
 }
 /*
