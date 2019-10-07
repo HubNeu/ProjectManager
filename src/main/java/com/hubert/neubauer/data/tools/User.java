@@ -6,6 +6,7 @@ public class User{
     /**
      * Extension of the class User, will be used to track changes.
      */
+
     private Person person;
     private String comapnyEmail;
     private LocalDate dateOfEmployment;
@@ -111,4 +112,7 @@ public class User{
     public void setPositionLevel(PositionLevel positionLevel){
         this.positionLevel = positionLevel;
     }
+
+    //Additional methods:
+
 }

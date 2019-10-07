@@ -16,8 +16,7 @@ public class Person{
     //functions
     public int autofillAge(LocalDate birthDate){
         LocalDate now =LocalDate.now();
-        int difference=now.getYear()-dateOfBirth.getYear();
-        return difference;
+        return now.getYear()-dateOfBirth.getYear();
     }
     //Getters and setters:
     public String getName(){
@@ -75,5 +74,6 @@ public class Person{
     public void setDateOfBirth(LocalDate dateOfBirth){
         this.dateOfBirth = dateOfBirth;
     }
+
 
 }
