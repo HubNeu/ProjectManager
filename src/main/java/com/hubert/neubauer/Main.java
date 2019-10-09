@@ -1,12 +1,12 @@
-package com.hubert.neubauer;
-
 /**
  Problems:
  -Not sure if data from FXML controllers is updaed or not, figure it out
 
  To do:
  -everything
+ -fix that damn data structure
  */
+package com.hubert.neubauer;
 import com.hubert.neubauer.data.tools.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -28,6 +28,7 @@ public class Main extends Application {
     }
 
     private void appdataInit(){
+    /*
     User user1 = new User();
     user1.setName("Adam");
     user1.setSurname("Smith");
@@ -36,6 +37,8 @@ public class Main extends Application {
     user1.setStatus(MaritalStatus.MARRIED);
     user1.setPreviousOccupation(Occupation.EMPLOYED);
     user1.setDateOfBirth(LocalDate.of(1998,10,8));
+
+     */
     }
 
     public static void main(String[] args) {
