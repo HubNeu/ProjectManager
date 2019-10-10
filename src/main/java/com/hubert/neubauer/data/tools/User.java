@@ -5,6 +5,13 @@ import java.time.LocalDate;
 public class User{
     /**
      * Extension of the class User, will be used to track changes.
+     *
+     * -TODO:
+     * -Figure out the form used to add users on the go, rn you have to add a person
+     * instance first, then use it to make an instance of User.
+     * --option 1: code it so that it makes a Person instance first, then it makes a User instance using that.
+     * --option superior: make a caller to first add user bc it doesn't matter and is simpler on the code
+     * -add unit tests to make sure everything used is initiated at all times and spits out what it should
      */
 
     private Person person;
@@ -13,6 +20,30 @@ public class User{
     private double salary;
     private PositionLevel positionLevel;
 
+    //Constructors
+
+    public User() {
+        this.person=new Person();
+        this.comapnyEmail="";
+        this.dateOfEmployment=LocalDate.now();
+        this.salary=0;
+        this.positionLevel=PositionLevel.UNDEFINED;
+    }
+
+    public User(Person person, String comapnyEmail, LocalDate dateOfEmployment, double salary, PositionLevel positionLevel) {
+        this.person = person;
+        this.comapnyEmail = comapnyEmail;
+        this.dateOfEmployment = dateOfEmployment;
+        this.salary = salary;
+        this.positionLevel = positionLevel;
+    }
+
+    public User(Person person) {
+        this.person = person;
+        this.comapnyEmail=setCompanyEmail(this.person);
+    }
+
+    //Stetters and getters
     public Person getPerson(){
         return person;
     }
@@ -75,6 +106,7 @@ public class User{
 
     public void setDateOfBirth(LocalDate dateOfBirth){
         person.setDateOfBirth(dateOfBirth);
+        this.autofillAge(dateOfBirth);
     }
 
     public void autofillAge(LocalDate dob){
@@ -85,8 +117,8 @@ public class User{
         return comapnyEmail;
     }
 
-    public void setComapnyEmail(String comapnyEmail){
-        this.comapnyEmail = comapnyEmail;
+    public String setCompanyEmail(Person person) {
+        return person.getName()+"."+person.getSurname()+"@company.com";
     }
 
     public LocalDate getDateOfEmployment(){

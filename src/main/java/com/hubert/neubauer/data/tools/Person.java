@@ -18,6 +18,28 @@ public class Person{
         LocalDate now =LocalDate.now();
         return now.getYear()-dateOfBirth.getYear();
     }
+    //constructors
+    public Person() {
+        this.name="";
+        this.surname="";
+        this.socialSecurityNumber="";
+        this.age=0;
+        this.dateOfBirth=LocalDate.now();
+        this.status=MaritalStatus.UNDEFINED;
+        this.previousOccupation=Occupation.UNDEFINED;
+
+    }
+
+    public Person(String name, String surname, String socialSecurityNumber, int age, LocalDate dateOfBirth, MaritalStatus status, Occupation previousOccupation) {
+        this.name = name;
+        this.surname = surname;
+        this.socialSecurityNumber = socialSecurityNumber;
+        this.dateOfBirth = dateOfBirth;
+        this.age = autofillAge(dateOfBirth);
+        this.status = status;
+        this.previousOccupation = previousOccupation;
+    }
+
     //Getters and setters:
     public String getName(){
         return name;
