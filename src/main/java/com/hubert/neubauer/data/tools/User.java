@@ -12,6 +12,8 @@ public class User{
      * --option 1: code it so that it makes a Person instance first, then it makes a User instance using that.
      * --option superior: make a caller to first add user bc it doesn't matter and is simpler on the code
      * -add unit tests to make sure everything used is initiated at all times and spits out what it should
+     *
+     * -add a var to store employee ID to use in searches
      */
 
     private Person person;
@@ -30,9 +32,9 @@ public class User{
         this.positionLevel=PositionLevel.UNDEFINED;
     }
 
-    public User(Person person, String comapnyEmail, LocalDate dateOfEmployment, double salary, PositionLevel positionLevel) {
+    public User(Person person, LocalDate dateOfEmployment, double salary, PositionLevel positionLevel) {
         this.person = person;
-        this.comapnyEmail = comapnyEmail;
+        this.comapnyEmail = setCompanyEmail(this.person);
         this.dateOfEmployment = dateOfEmployment;
         this.salary = salary;
         this.positionLevel = positionLevel;

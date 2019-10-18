@@ -1,5 +1,6 @@
 package com.hubert.neubauer.data.tools;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class DataStore{
      */
 
     //Declarations
-    private List<User> users;
+    private List<User> users = new ArrayList<User>();
     //End of declarations
 
     public DataStore(){
@@ -43,10 +44,11 @@ public class DataStore{
     public void deleteUserByUser(User arg){
         users.remove(arg);
     }
-    public void deleteUserByIndex(User arg) throws Exception{
-        int i = users.indexOf(arg);
-        users.remove(i);
+    public void deleteUserByIndex(User arg) throws Exception{users.remove(users.indexOf(arg));}
+    public User getUserByIndex(int arg){
+        return users.get(arg);
     }
-
-
+    public void getUserByID(int arg){
+        //ToDo: Add UserID, notes in User class
+    }
 }

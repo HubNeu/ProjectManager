@@ -30,7 +30,7 @@ public class Person{
 
     }
 
-    public Person(String name, String surname, String socialSecurityNumber, int age, LocalDate dateOfBirth, MaritalStatus status, Occupation previousOccupation) {
+    public Person(String name, String surname, String socialSecurityNumber, LocalDate dateOfBirth, MaritalStatus status, Occupation previousOccupation) {
         this.name = name;
         this.surname = surname;
         this.socialSecurityNumber = socialSecurityNumber;
