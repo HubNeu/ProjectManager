@@ -14,6 +14,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -30,50 +32,47 @@ public class InitScreenController{
     private User currentUser;
     private String enteredPassword="";
     private String enteredLogin="";
-
+    private DataStorage dataStore;
 
     public void getInput(ActionEvent ae){
-        //Process input and identify current userso it can be retruned when logging in
+        //Process input and identify current user so it can be retruned when logging in
         System.out.println("login button pressed");
         enteredPassword=userPassword.getText();
         enteredLogin=textUsername.getText();
-        System.out.println("login pulled successfully");
+        System.out.println("login pulled successfully, credentials: "+enteredLogin+"/"+enteredPassword);
         processUser(textUsername.getText(),userPassword.getText());
     }
 
     private void processUser(String argLogin, String argPassword) {
         try{
-            Method m = Main.class.getDeclaredMethod("getCurrentDatabase");
-            m.setAccessible(true);
-            //TODO: this shit
-            DataStorage userList = m.invoke(com.hubert.neubauer.Main);
-            currentUser= userList.findUserByName(argLogin);
-        } catch (NoSuchMethodException e){
-            System.out.println(Arrays.toString(e.getStackTrace()));
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
+            currentUser=dataStore.findUserByName(argLogin);
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
-
 
     public void about() throws IOException {
         System.out.println("Pressed AboutProgram element");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/aboutScreen.fxml"));
         //ADD A THING TO MAKE ANY CLICK CLOSE THE APPLICATION
+        //I can't be bothered to do it just use the x dummy, you've got a mouse right?
         Stage miniWindow = new Stage();
         miniWindow.initModality(Modality.APPLICATION_MODAL);
         miniWindow.setAlwaysOnTop(true);
         miniWindow.setResizable(false);
         Parent root = loader.load();
         miniWindow.setScene(new Scene(root));
-        AboutScreenController aboutScreenController = loader.getController();
+        //AboutScreenController aboutScreenController = loader.getController();
         miniWindow.showAndWait();
         //extract any values if needed
     }
 
     public User getUser() {
         return this.currentUser;
+    }
+
+    public void copyDataStorage(DataStorage dataStorage) {
+        this.dataStore=dataStorage;
+        System.out.println("DataStore has been copied to InitScreenController");
     }
 }

@@ -1,13 +1,16 @@
 /**
  Problems:
  -Not sure if data from FXML controllers is updaed or not, figure it out
+ Edit: you pass the the reference to the object so yeah, untill you make a new object it's gonna update
 
- To do:
+ TODO:
  -everything
  -when calling one method that throws exception make sure to include it in the handle of the method
  that way it will never go through with the method and stop halfway effectively softlocking the program;
+ -make exceptions: NoUserFound, MismatchedData,
  */
 package com.hubert.neubauer;
+import com.hubert.neubauer.App.Core.AppMain;
 import com.hubert.neubauer.data.tools.*;
 import com.hubert.neubauer.screen.controllers.InitScreenController;
 import javafx.application.Application;
@@ -20,30 +23,30 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Main extends Application {
-    //Declarations:
-    private AppController appController = new AppController();
-    //private InitScreenController initScreenController = new InitScreenController();
+    private AppMain appController = new AppMain();
     private DataStorage dataStorage = new DataStorage();
     private Stage window = new Stage();
-    //End of declarations
-
     @Override
     public void start(Stage primaryStage) throws Exception{
         System.out.println("Starting...");
         //Initalize data
-        appdataInit();
+        appDataInit();
         //Prepare a window
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/InitScreen.fxml"));
         Parent root = loader.load();
         window.setScene(new Scene(root));
         InitScreenController initScreenController = loader.<InitScreenController>getController();
+        initScreenController.copyDataStorage(dataStorage);
         window.showAndWait();
-        User currentUser = initScreenController.getUser();
-        //login(user);
-        System.out.println("Started...");
-    }
+        //login(initScreenController.getUser());
+        System.out.println("Logged in and started...");
+        /*
+        that's where we're at when we successfully log in. Now what needs to happen is:
+        we close the current window and pass according data to appcontroller, now called AppMain.
+         */
 
-    private void appdataInit(){
+    }
+    private void appDataInit(){
     /*
         Hardcoded in place insted of sql databases, use Hibernate or sth after completing the demo app
      */
@@ -72,11 +75,9 @@ public class Main extends Application {
         dataStorage.addUser(user5);
         dataStorage.addUser(user6);
     }
-
     private List<User> getCurrentDataBase(){
         return dataStorage.getUsers();
     }
-
     public static void main(String[] args) {
         launch(args);
         //Exitcode holds te code set when exiting the app at the end of the work. If it's not 0 then it spews out the login screen again.

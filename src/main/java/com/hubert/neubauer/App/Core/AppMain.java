@@ -1,4 +1,4 @@
-package com.hubert.neubauer;
+package com.hubert.neubauer.App.Core;
 
 import com.hubert.neubauer.data.tools.DataStorage;
 import com.hubert.neubauer.screen.controllers.InitScreenController;
@@ -19,20 +19,14 @@ import java.io.IOException;
  * call additional functions
  */
 
-public class AppController {
+public class AppMain {
     private Stage window = new Stage();
-    private String initScreen = "/fxml/InitScreen.fxml";
-    private String aboutScreen = "/fxml/aboutScreen.fxml";
     private String secondScreen = "/fxml/secondScreen.fxml";
     private DataStorage data;
     public InitScreenController initScreenController;
 
-    public void begin(DataStorage data) throws IOException{
-        //load the data passed from main, set up all controllers and fxml files, and display the first window
-        //load the data:
+    public void begin(DataStorage data){
         loadData(data);
-        loadWindow(initScreen);
-
     }
     public void loadData(DataStorage dataStorage){
         //this will prepare the data for modification
@@ -46,12 +40,3 @@ public class AppController {
         window.show();
     }
 }
-/*
-    Parent root = FXMLLoader.load(getClass().getResource(adress));
-    FXMLLoader loader = new FXMLLoader();
-    loader.getController();
-    window.setScene(new Scene(root));
-    window.setTitle("Project Manager");
-    window.show();
-    System.out.print("Done showing the scene");
- */
