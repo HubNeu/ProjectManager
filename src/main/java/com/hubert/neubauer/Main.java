@@ -4,25 +4,26 @@
 
  To do:
  -everything
- -fix that damn data structure
+ -when calling one method that throws exception make sure to include it in the handle of the method
+ that way it will never go through with the method and stop halfway effectively softlocking the program;
  */
 package com.hubert.neubauer;
 import com.hubert.neubauer.data.tools.*;
 import com.hubert.neubauer.screen.controllers.InitScreenController;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Main extends Application {
     //Declarations:
     private AppController appController = new AppController();
     //private InitScreenController initScreenController = new InitScreenController();
-    private DataStore appData = new DataStore();
+    private DataStorage dataStorage = new DataStorage();
     private Stage window = new Stage();
     //End of declarations
 
@@ -47,23 +48,33 @@ public class Main extends Application {
         Hardcoded in place insted of sql databases, use Hibernate or sth after completing the demo app
      */
         Person person1 = new Person("Adam","Smith","00001",LocalDate.of(1990,12,02),MaritalStatus.SINGLE,Occupation.STUDENT);
-        User user1 = new User(person1,LocalDate.of(2018,03,03),5678.65,PositionLevel.JUNIOR);
         Person person2 = new Person("Maciej","Kowalski","00002",LocalDate.of(1978,2,21),MaritalStatus.MARRIED,Occupation.EMPLOYED);
-        User user2 = new User(person2,LocalDate.of(2010,7,03),12000.65,PositionLevel.SENIOR);
         Person person3 = new Person("Olga","Nowak","00003",LocalDate.of(1985,11,02),MaritalStatus.SINGLE,Occupation.EMPLOYED);
-        User user3 = new User(person3,LocalDate.of(2016,10,03),4500.65,PositionLevel.MID);
         Person person4 = new Person("Wojciech","Nowakowski","00004",LocalDate.of(1995,06,13),MaritalStatus.SINGLE,Occupation.STUDENT);
-        User user4 = new User(person4,LocalDate.of(2018,06,30),3000.00,PositionLevel.INTERN);
-        Person person5 = new Person("Kamila","Drozd","00005",LocalDate.of(1971,04,29),MaritalStatus.MARRIED,Occupation.EMPLOYED);
-        User user5 = new User(person5,LocalDate.of(2008,02,16),45000.65,PositionLevel.EXECUTIVE);
+        Person person5 = new Person("Kamila","Drozd","00005",LocalDate.of(1971,04,29),MaritalStatus.MARRIED,Occupation.UNEMPLOYED);
         Person person6 = new Person("Stefan","Malecki","00006",LocalDate.of(1980,10,9),MaritalStatus.SINGLE,Occupation.EMPLOYED);
+        dataStorage.addPerson(person1);
+        dataStorage.addPerson(person2);
+        dataStorage.addPerson(person3);
+        dataStorage.addPerson(person4);
+        dataStorage.addPerson(person5);
+        dataStorage.addPerson(person6);
+        User user1 = new User(person1,LocalDate.of(2018,03,03),5678.65,PositionLevel.JUNIOR);
+        User user2 = new User(person2,LocalDate.of(2010,7,03),12000.65,PositionLevel.SENIOR);
+        User user3 = new User(person3,LocalDate.of(2016,10,03),4500.65,PositionLevel.MID);
+        User user4 = new User(person4,LocalDate.of(2018,06,30),3000.00,PositionLevel.INTERN);
+        User user5 = new User(person5,LocalDate.of(2008,02,16),45000.65,PositionLevel.EXECUTIVE);
         User user6 = new User(person6,LocalDate.of(2016,10,03),4500.65,PositionLevel.SUPERVISOR);
-        appData.addUser(user1);
-        appData.addUser(user2);
-        appData.addUser(user3);
-        appData.addUser(user4);
-        appData.addUser(user5);
-        appData.addUser(user6);
+        dataStorage.addUser(user1);
+        dataStorage.addUser(user2);
+        dataStorage.addUser(user3);
+        dataStorage.addUser(user4);
+        dataStorage.addUser(user5);
+        dataStorage.addUser(user6);
+    }
+
+    private List<User> getCurrentDataBase(){
+        return dataStorage.getUsers();
     }
 
     public static void main(String[] args) {

@@ -1,12 +1,11 @@
 package com.hubert.neubauer;
 
-import com.hubert.neubauer.data.tools.DataStore;
+import com.hubert.neubauer.data.tools.DataStorage;
 import com.hubert.neubauer.screen.controllers.InitScreenController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.IOException;
 
@@ -25,17 +24,17 @@ public class AppController {
     private String initScreen = "/fxml/InitScreen.fxml";
     private String aboutScreen = "/fxml/aboutScreen.fxml";
     private String secondScreen = "/fxml/secondScreen.fxml";
-    private DataStore data;
+    private DataStorage data;
     public InitScreenController initScreenController;
 
-    public void begin(DataStore data) throws IOException{
+    public void begin(DataStorage data) throws IOException{
         //load the data passed from main, set up all controllers and fxml files, and display the first window
         //load the data:
         loadData(data);
         loadWindow(initScreen);
 
     }
-    public void loadData(DataStore dataStore){
+    public void loadData(DataStorage dataStorage){
         //this will prepare the data for modification
     }
     public Scene loadScene(String adr) throws IOException{

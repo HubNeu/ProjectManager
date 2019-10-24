@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DataStore{
+public class DataStorage {
     /**
      * Class that will contain all the necessary data to initalize and run the app. Placed here in place of data base as
      * I need to first build the app then worry about data storage. (Then I can just use Hibernate and this class to store
@@ -20,10 +20,11 @@ public class DataStore{
      */
 
     //Declarations
-    private List<User> users = new ArrayList<User>();
+    private List<User> users = new ArrayList<>();
+    private List<Person> persons = new ArrayList<>();
     //End of declarations
 
-    public DataStore(){
+    public DataStorage(){
     }
 
     public List<User> getUsers(){
@@ -48,7 +49,8 @@ public class DataStore{
     public User getUserByIndex(int arg){
         return users.get(arg);
     }
-    public void getUserByID(int arg){
+    public void getUserByID(int arg) {
         //ToDo: Add UserID, notes in User class
     }
+    public void addPerson(Person arg) {persons.add(arg);}
 }
