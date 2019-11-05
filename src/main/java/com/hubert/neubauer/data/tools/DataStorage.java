@@ -17,6 +17,7 @@ public class DataStorage {
      * TODO:
      * -build this by implementing all of the written data classes
      * -later swap it for sql with hibernate
+     * -alertxboxes for when it throws errors
      */
 
     //Declarations

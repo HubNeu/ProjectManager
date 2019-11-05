@@ -41,13 +41,15 @@ public class InitScreenController{
         enteredLogin=textUsername.getText();
         System.out.println("login pulled successfully, credentials: "+enteredLogin+"/"+enteredPassword);
         processUser(textUsername.getText(),userPassword.getText());
+        System.out.println(currentUser.UserToString());
+        //TODO: add the exit command so it exits the showAndWait().
     }
 
     private void processUser(String argLogin, String argPassword) {
         try{
             currentUser=dataStore.findUserByName(argLogin);
         } catch (Exception e){
-            e.printStackTrace();
+            e.getLocalizedMessage();
         }
     }
 

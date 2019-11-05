@@ -148,5 +148,20 @@ public class User{
     }
 
     //Additional methods:
-
+    public String UserToString(){
+        String output ="";
+        output+="Name: "+this.getName()+"\n";
+        output+="Surname: "+this.getSurname()+"\n";
+        output+="Age: "+String.valueOf(this.getAge())+"\n";
+        output+="SSN: "+this.getSocialSecurityNumber()+"\n";
+        output+="DOB: "+this.getDateOfBirth().toString()+"\n";
+        output+="Marital status: "+this.getStatus().toString()+"\n";
+        output+="DOB [YYYY-MM-DD]: "+this.getDateOfBirth().toString()+"\n";
+        output+="Previous occupation: "+this.getPreviousOccupation().toString()+"\n";
+        output+="Salary: "+String.valueOf(this.getSalary())+"\n";
+        output+="Salary: "+this.getComapnyEmail()+"\n";
+        output+="DOE: "+this.getDateOfEmployment().toString()+"\n";
+        output+="Position level: "+this.getPositionLevel().toString()+"\n";
+        return output;
+    }
 }

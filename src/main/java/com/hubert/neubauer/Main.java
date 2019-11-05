@@ -4,10 +4,10 @@
  Edit: you pass the the reference to the object so yeah, untill you make a new object it's gonna update
 
  TODO:
- -everything
  -when calling one method that throws exception make sure to include it in the handle of the method
  that way it will never go through with the method and stop halfway effectively softlocking the program;
- -make exceptions: NoUserFound, MismatchedData,
+ -display showing and hiding
+ -event logger and to file saves so you can trace what happened when by which user
  */
 package com.hubert.neubauer;
 import com.hubert.neubauer.App.Core.AppMain;
@@ -23,7 +23,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Main extends Application {
-    private AppMain appController = new AppMain();
+    private AppMain appMain;
     private DataStorage dataStorage = new DataStorage();
     private Stage window = new Stage();
     @Override
@@ -38,13 +38,14 @@ public class Main extends Application {
         InitScreenController initScreenController = loader.<InitScreenController>getController();
         initScreenController.copyDataStorage(dataStorage);
         window.showAndWait();
-        //login(initScreenController.getUser());
+        window.close();
         System.out.println("Logged in and started...");
         /*
         that's where we're at when we successfully log in. Now what needs to happen is:
         we close the current window and pass according data to appcontroller, now called AppMain.
          */
-
+        User user = initScreenController.getUser();
+        appMain = new AppMain(dataStorage, user);
     }
     private void appDataInit(){
     /*
