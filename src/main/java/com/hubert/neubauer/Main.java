@@ -45,6 +45,9 @@ public class Main extends Application {
          */
         User user = initScreenController.getUser();
         appMain = new AppMain(dataStorage, user);
+        //is the git fixed yet?
+        //test
+        //it is!
     }
     private void appDataInit(){
     /*
@@ -86,7 +89,7 @@ public class Main extends Application {
             System.exit(exitCode);
         }
         else {
-            //start(new Stage()); circumvent static vs non static co nontext error
+            //start(new Stage()); circumvent static vs non static conontext error
         }
     }
 }
