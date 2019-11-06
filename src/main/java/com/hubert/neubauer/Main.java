@@ -87,7 +87,7 @@ public class Main extends Application {
             System.exit(exitCode);
         }
         else {
-            //start(new Stage()); circumvent static vs non static co nontext error
+            //start(new Stage()); circumvent static vs non static conontext error
         }
     }
 }
