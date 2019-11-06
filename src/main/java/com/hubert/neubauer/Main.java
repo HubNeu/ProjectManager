@@ -46,6 +46,7 @@ public class Main extends Application {
          */
         User user = initScreenController.getUser();
         appMain = new AppMain(dataStorage, user);
+        //is the git fixed yet?
     }
     private void appDataInit(){
     /*
