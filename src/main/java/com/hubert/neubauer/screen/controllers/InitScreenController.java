@@ -42,7 +42,7 @@ public class InitScreenController{
         System.out.println("login pulled successfully, credentials: "+enteredLogin+"/"+enteredPassword);
         processUser(textUsername.getText(),userPassword.getText());
         System.out.println(currentUser.UserToString());
-        //TODO: add the exit command so it exits the showAndWait().
+        textUsername.getScene().getWindow().hide();
     }
 
     private void processUser(String argLogin, String argPassword) {

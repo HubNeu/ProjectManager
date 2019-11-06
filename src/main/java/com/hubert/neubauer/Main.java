@@ -6,7 +6,7 @@
  TODO:
  -when calling one method that throws exception make sure to include it in the handle of the method
  that way it will never go through with the method and stop halfway effectively softlocking the program;
- -display showing and hiding
+ -fixing showing and hiding
  -event logger and to file saves so you can trace what happened when by which user
  */
 package com.hubert.neubauer;
@@ -38,7 +38,6 @@ public class Main extends Application {
         InitScreenController initScreenController = loader.<InitScreenController>getController();
         initScreenController.copyDataStorage(dataStorage);
         window.showAndWait();
-        window.close();
         System.out.println("Logged in and started...");
         /*
         that's where we're at when we successfully log in. Now what needs to happen is:
