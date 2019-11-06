@@ -17,7 +17,7 @@ public class User{
      */
 
     private Person person;
-    private String comapnyEmail;
+    private String companyEmail;
     private LocalDate dateOfEmployment;
     private double salary;
     private PositionLevel positionLevel;
@@ -26,7 +26,7 @@ public class User{
 
     public User() {
         this.person=new Person();
-        this.comapnyEmail="";
+        this.companyEmail ="";
         this.dateOfEmployment=LocalDate.now();
         this.salary=0;
         this.positionLevel=PositionLevel.UNDEFINED;
@@ -34,7 +34,7 @@ public class User{
 
     public User(Person person, LocalDate dateOfEmployment, double salary, PositionLevel positionLevel) {
         this.person = person;
-        this.comapnyEmail = setCompanyEmail(this.person);
+        this.companyEmail = setCompanyEmail(this.person);
         this.dateOfEmployment = dateOfEmployment;
         this.salary = salary;
         this.positionLevel = positionLevel;
@@ -42,7 +42,7 @@ public class User{
 
     public User(Person person) {
         this.person = person;
-        this.comapnyEmail=setCompanyEmail(this.person);
+        this.companyEmail =setCompanyEmail(this.person);
     }
 
     //Stetters and getters
@@ -115,8 +115,8 @@ public class User{
         person.autofillAge(dob);
     }
 
-    public String getComapnyEmail(){
-        return comapnyEmail;
+    public String getCompanyEmail(){
+        return companyEmail;
     }
 
     public String setCompanyEmail(Person person) {
@@ -159,7 +159,7 @@ public class User{
         output+="DOB [YYYY-MM-DD]: "+this.getDateOfBirth().toString()+"\n";
         output+="Previous occupation: "+this.getPreviousOccupation().toString()+"\n";
         output+="Salary: "+String.valueOf(this.getSalary())+"\n";
-        output+="Salary: "+this.getComapnyEmail()+"\n";
+        output+="Salary: "+this.getCompanyEmail()+"\n";
         output+="DOE: "+this.getDateOfEmployment().toString()+"\n";
         output+="Position level: "+this.getPositionLevel().toString()+"\n";
         return output;
