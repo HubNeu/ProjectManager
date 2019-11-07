@@ -19,7 +19,7 @@ import java.io.IOException;
 
 public class AppMain {
     private Stage mainWindow = new Stage();
-    private String secondScreen = "/fxml/secondScreen.fxml";
+    private String mainScreenPath = "/fxml/MainScreen.fxml";
     private DataStorage data;
     private MainScreenController mainScreenController;
     private User currentUser;
@@ -27,7 +27,7 @@ public class AppMain {
     public AppMain(DataStorage argData, User argUser) throws IOException {
         this.data = argData;
         this.currentUser=argUser;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(secondScreen));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(mainScreenPath));
         Parent root = loader.load();
         mainWindow.setScene(new Scene(root));
         mainWindow.show();// or showAndWait(); not sure yet how to process all of this and which it will require

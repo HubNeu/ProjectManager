@@ -2,9 +2,10 @@ package com.hubert.neubauer.data.tools;
 
 import java.time.LocalDate;
 
-public class User{
+public class User extends Person{
+
     /**
-     * Extension of the class User, will be used to track changes.
+     * Extension of the class User, will be used to do many things
      *
      * -TODO:
      * -Figure out the form used to add users on the go, rn you have to add a person
@@ -17,13 +18,34 @@ public class User{
      */
 
     private Person person;
+    private String username;
     private String companyEmail;
     private LocalDate dateOfEmployment;
     private double salary;
     private PositionLevel positionLevel;
 
     //Constructors
+    public User(String name, String surname, String socialSecurityNumber, LocalDate dateOfBirth, MaritalStatus status, Occupation previousOccupation, Person person, String username, String companyEmail, LocalDate dateOfEmployment, double salary, PositionLevel positionLevel) {
+        super(name, surname, socialSecurityNumber, dateOfBirth, status, previousOccupation);
+        this.person = person;
+        this.username = username;
+        this.companyEmail = companyEmail;
+        this.dateOfEmployment = dateOfEmployment;
+        this.salary = salary;
+        this.positionLevel = positionLevel;
+    }
 
+    public User(Person argPerson, LocalDate argDateOfEmployment, double argSalary, PositionLevel argPositionLevel) {
+        super(argPerson.getName(), argPerson.getSurname(), argPerson.getSocialSecurityNumber(), argPerson.getDateOfBirth(), argPerson.getStatus(), argPerson.getPreviousOccupation());
+        this.person = argPerson;
+        this.username = setUpUsername(argPerson);
+        this.companyEmail = setCompanyEmail(argPerson);
+        this.dateOfEmployment = argDateOfEmployment;
+        this.salary = argSalary;
+        this.positionLevel = argPositionLevel;
+    }
+
+    /* Deprecated constructors from older version of this class
     public User() {
         this.person=new Person();
         this.companyEmail ="";
@@ -44,75 +66,27 @@ public class User{
         this.person = person;
         this.companyEmail =setCompanyEmail(this.person);
     }
+    */
 
     //Stetters and getters
+    public String getUsername() {
+        return username;
+    }
+
+    public String setUpUsername(Person person) {
+        return person.getName()+person.getSurname();
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public Person getPerson(){
         return person;
     }
 
     public void setPerson(Person person){
         this.person = person;
-    }
-
-    public String getName(){
-        return person.getName();
-    }
-
-    public void setName(String name){
-        person.setName(name);
-    }
-
-    public String getSurname(){
-        return person.getSurname();
-    }
-
-    public void setSurname(String surname){
-        person.setSurname(surname);
-    }
-
-    public String getSocialSecurityNumber(){
-        return person.getSocialSecurityNumber();
-    }
-
-    public void setSocialSecurityNumber(String socialSecurityNumber){
-        person.setSocialSecurityNumber(socialSecurityNumber);
-    }
-
-    public int getAge(){
-        return person.getAge();
-    }
-
-    public void setAge(int age){
-        person.setAge(age);
-    }
-
-    public MaritalStatus getStatus(){
-        return person.getStatus();
-    }
-
-    public void setStatus(MaritalStatus status){
-        person.setStatus(status);
-    }
-
-    public Occupation getPreviousOccupation(){
-        return person.getPreviousOccupation();
-    }
-
-    public void setPreviousOccupation(Occupation previousOccupation){
-        person.setPreviousOccupation(previousOccupation);
-    }
-
-    public LocalDate getDateOfBirth(){
-        return person.getDateOfBirth();
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth){
-        person.setDateOfBirth(dateOfBirth);
-        this.autofillAge(dateOfBirth);
-    }
-
-    public void autofillAge(LocalDate dob){
-        person.autofillAge(dob);
     }
 
     public String getCompanyEmail(){
@@ -149,6 +123,7 @@ public class User{
 
     //Additional methods:
     public String UserToString(){
+        //I should have used a String array for it
         String output ="";
         output+="Name: "+this.getName()+"\n";
         output+="Surname: "+this.getSurname()+"\n";

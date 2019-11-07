@@ -54,4 +54,10 @@ public class DataStorage {
         //ToDo: Add UserID, notes in User class
     }
     public void addPerson(Person arg) {persons.add(arg);}
+
+    public void extractAllPersons() {
+        for (int i=0;i<users.size();i++){
+            this.persons.add(users.get(i).getPerson());
+        }
+    }
 }

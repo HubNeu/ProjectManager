@@ -1,7 +1,7 @@
 /**
  Problems:
  -Not sure if data from FXML controllers is updaed or not, figure it out
- Edit: you pass the the reference to the object so yeah, untill you make a new object it's gonna update
+ Edit: you pass the the reference to the object so yeah, until you make a new object it's gonna update
 
  TODO:
  -when calling one method that throws exception make sure to include it in the handle of the method
@@ -35,21 +35,20 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/InitScreen.fxml"));
         Parent root = loader.load();
         window.setScene(new Scene(root));
+        //get the controller and set ti up
         InitScreenController initScreenController = loader.<InitScreenController>getController();
         initScreenController.copyDataStorage(dataStorage);
+        //show the window and wait until it's filled out
         window.showAndWait();
-        System.out.println("Logged in and started...");
-        /*
-        that's where we're at when we successfully log in. Now what needs to happen is:
-        we close the current window and pass according data to appcontroller, now called AppMain.
-         */
+        //get data from the filled controller
         User user = initScreenController.getUser();
+        //fire up appCore
         appMain = new AppMain(dataStorage, user);
-
+        System.out.println("Logged in and started...");
     }
     private void appDataInit(){
     /*
-        Hardcoded in place insted of sql databases, use Hibernate or sth after completing the demo app
+        Hardcoded in place instead of sql databases, use Hibernate or sth after completing the demo app
      */
         Person person1 = new Person("Adam","Smith","00001",LocalDate.of(1990,12,02),MaritalStatus.SINGLE,Occupation.STUDENT);
         Person person2 = new Person("Maciej","Kowalski","00002",LocalDate.of(1978,2,21),MaritalStatus.MARRIED,Occupation.EMPLOYED);
@@ -57,12 +56,12 @@ public class Main extends Application {
         Person person4 = new Person("Wojciech","Nowakowski","00004",LocalDate.of(1995,06,13),MaritalStatus.SINGLE,Occupation.STUDENT);
         Person person5 = new Person("Kamila","Drozd","00005",LocalDate.of(1971,04,29),MaritalStatus.MARRIED,Occupation.UNEMPLOYED);
         Person person6 = new Person("Stefan","Malecki","00006",LocalDate.of(1980,10,9),MaritalStatus.SINGLE,Occupation.EMPLOYED);
-        dataStorage.addPerson(person1);
+        /*dataStorage.addPerson(person1);
         dataStorage.addPerson(person2);
         dataStorage.addPerson(person3);
         dataStorage.addPerson(person4);
         dataStorage.addPerson(person5);
-        dataStorage.addPerson(person6);
+        dataStorage.addPerson(person6);*/
         User user1 = new User(person1,LocalDate.of(2018,03,03),5678.65,PositionLevel.JUNIOR);
         User user2 = new User(person2,LocalDate.of(2010,7,03),12000.65,PositionLevel.SENIOR);
         User user3 = new User(person3,LocalDate.of(2016,10,03),4500.65,PositionLevel.MID);
@@ -75,9 +74,7 @@ public class Main extends Application {
         dataStorage.addUser(user4);
         dataStorage.addUser(user5);
         dataStorage.addUser(user6);
-    }
-    private List<User> getCurrentDataBase(){
-        return dataStorage.getUsers();
+        dataStorage.extractAllPersons();
     }
     public static void main(String[] args) {
         launch(args);
