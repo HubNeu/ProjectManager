@@ -37,17 +37,24 @@ public class InitScreenController{
     public void getInput(ActionEvent ae){
         //Process input and identify current user so it can be retruned when logging in
         System.out.println("login button pressed");
-        enteredPassword=userPassword.getText();
-        enteredLogin=textUsername.getText();
-        System.out.println("login pulled successfully, credentials: "+enteredLogin+"/"+enteredPassword);
+        //enteredPassword=userPassword.getText();
+        //enteredLogin=textUsername.getText();
+        System.out.println("login pulled successfully, credentials: "+textUsername.getText()+"/"+userPassword.getText());
         processUser(textUsername.getText(),userPassword.getText());
-        System.out.println(currentUser.UserToString());
+        //System.out.println(currentUser.UserToString());
         textUsername.getScene().getWindow().hide();
     }
 
     private void processUser(String argLogin, String argPassword) {
         try{
-            currentUser=dataStore.findUserByName(argLogin);
+            User tmp = dataStore.findUserByName(argLogin);
+            System.out.println("done finding");
+            if (tmp.getPassword()==argPassword){
+                currentUser = tmp;
+                System.out.println("done assigning");
+            }else{
+                throw new Exception("Incorrect credentials!");
+            }
         } catch (Exception e){
             e.getLocalizedMessage();
         }

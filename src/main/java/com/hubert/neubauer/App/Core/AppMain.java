@@ -29,6 +29,7 @@ public class AppMain {
         this.currentUser=argUser;
         FXMLLoader loader = new FXMLLoader(getClass().getResource(mainScreenPath));
         Parent root = loader.load();
+        mainScreenController = loader.getController();
         mainWindow.setScene(new Scene(root));
         mainWindow.show();// or showAndWait(); not sure yet how to process all of this and which it will require
     }

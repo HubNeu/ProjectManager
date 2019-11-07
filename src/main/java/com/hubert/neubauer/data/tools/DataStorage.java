@@ -6,7 +6,7 @@ import java.util.List;
 
 public class DataStorage {
     /**
-     * Class that will contain all the necessary data to initalize and run the app. Placed here in place of data base as
+     * Class that will contain all the necessary data to initialize and run the app. Placed here in place of data base as
      * I need to first build the app then worry about data storage. (Then I can just use Hibernate and this class to store
      * data from Hib to this class and nothing will have to change in the rest of app).
      *

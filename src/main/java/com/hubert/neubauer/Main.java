@@ -1,13 +1,10 @@
 /**
- Problems:
- -Not sure if data from FXML controllers is updaed or not, figure it out
- Edit: you pass the the reference to the object so yeah, until you make a new object it's gonna update
-
  TODO:
  -when calling one method that throws exception make sure to include it in the handle of the method
  that way it will never go through with the method and stop halfway effectively softlocking the program;
  -fixing showing and hiding
  -event logger and to file saves so you can trace what happened when by which user
+ -bug causing login when you press quit
  */
 package com.hubert.neubauer;
 import com.hubert.neubauer.App.Core.AppMain;
@@ -35,16 +32,22 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/InitScreen.fxml"));
         Parent root = loader.load();
         window.setScene(new Scene(root));
-        //get the controller and set ti up
+        //get the controller and set it up
         InitScreenController initScreenController = loader.<InitScreenController>getController();
         initScreenController.copyDataStorage(dataStorage);
         //show the window and wait until it's filled out
         window.showAndWait();
         //get data from the filled controller
         User user = initScreenController.getUser();
-        //fire up appCore
-        appMain = new AppMain(dataStorage, user);
-        System.out.println("Logged in and started...");
+//        System.out.println(user.getUsername());
+        //fire up appCore or quit
+        if (user!=null) {
+            appMain = new AppMain(dataStorage, user);
+            System.out.println("Logged in and started...");
+        }else{
+            System.out.println("Didn't log in, user is NULL, exiting");
+            System.exit(1234);
+        }
     }
     private void appDataInit(){
     /*
@@ -62,12 +65,12 @@ public class Main extends Application {
         dataStorage.addPerson(person4);
         dataStorage.addPerson(person5);
         dataStorage.addPerson(person6);*/
-        User user1 = new User(person1,LocalDate.of(2018,03,03),5678.65,PositionLevel.JUNIOR);
-        User user2 = new User(person2,LocalDate.of(2010,7,03),12000.65,PositionLevel.SENIOR);
-        User user3 = new User(person3,LocalDate.of(2016,10,03),4500.65,PositionLevel.MID);
-        User user4 = new User(person4,LocalDate.of(2018,06,30),3000.00,PositionLevel.INTERN);
-        User user5 = new User(person5,LocalDate.of(2008,02,16),45000.65,PositionLevel.EXECUTIVE);
-        User user6 = new User(person6,LocalDate.of(2016,10,03),4500.65,PositionLevel.SUPERVISOR);
+        User user1 = new User(person1,"qwe",LocalDate.of(2018,03,03),5678.65,PositionLevel.JUNIOR);
+        User user2 = new User(person2,"qwe",LocalDate.of(2010,7,03),12000.65,PositionLevel.SENIOR);
+        User user3 = new User(person3,"qwe",LocalDate.of(2016,10,03),4500.65,PositionLevel.MID);
+        User user4 = new User(person4,"qwe",LocalDate.of(2018,06,30),3000.00,PositionLevel.INTERN);
+        User user5 = new User(person5,"qwe",LocalDate.of(2008,02,16),45000.65,PositionLevel.EXECUTIVE);
+        User user6 = new User(person6,"qwe",LocalDate.of(2016,10,03),4500.65,PositionLevel.SUPERVISOR);
         dataStorage.addUser(user1);
         dataStorage.addUser(user2);
         dataStorage.addUser(user3);

@@ -17,29 +17,33 @@ public class User extends Person{
      * -add a var to store employee ID to use in searches
      */
 
-    private Person person;
+    //private Person person;
     private String username;
+    //yes, yes, I know, chill, I'll fix it w/ the proper database model
+    private String password;
     private String companyEmail;
     private LocalDate dateOfEmployment;
     private double salary;
     private PositionLevel positionLevel;
 
     //Constructors
-    public User(String name, String surname, String socialSecurityNumber, LocalDate dateOfBirth, MaritalStatus status, Occupation previousOccupation, Person person, String username, String companyEmail, LocalDate dateOfEmployment, double salary, PositionLevel positionLevel) {
+    public User(String name, String surname, String socialSecurityNumber, LocalDate dateOfBirth, MaritalStatus status, Occupation previousOccupation, String username, String argPassword, String companyEmail, LocalDate dateOfEmployment, double salary, PositionLevel positionLevel) {
         super(name, surname, socialSecurityNumber, dateOfBirth, status, previousOccupation);
-        this.person = person;
+        //this.person = person;
         this.username = username;
+        this.password = argPassword;
         this.companyEmail = companyEmail;
         this.dateOfEmployment = dateOfEmployment;
         this.salary = salary;
         this.positionLevel = positionLevel;
     }
 
-    public User(Person argPerson, LocalDate argDateOfEmployment, double argSalary, PositionLevel argPositionLevel) {
+    public User(Person argPerson, String argPassword,LocalDate argDateOfEmployment, double argSalary, PositionLevel argPositionLevel) {
         super(argPerson.getName(), argPerson.getSurname(), argPerson.getSocialSecurityNumber(), argPerson.getDateOfBirth(), argPerson.getStatus(), argPerson.getPreviousOccupation());
-        this.person = argPerson;
+        //this.person = argPerson;
         this.username = setUpUsername(argPerson);
-        this.companyEmail = setCompanyEmail(argPerson);
+        this.password = argPassword;
+        setCompanyEmail(argPerson.getName(),argPerson.getSurname());
         this.dateOfEmployment = argDateOfEmployment;
         this.salary = argSalary;
         this.positionLevel = argPositionLevel;
@@ -82,19 +86,24 @@ public class User extends Person{
     }
 
     public Person getPerson(){
-        return person;
+        Person tmperson = new Person(this.getName(),this.getSurname(),this.getSocialSecurityNumber(),this.getDateOfBirth(),this.getStatus(),this.getPreviousOccupation());
+        return tmperson;
     }
-
+    /*
     public void setPerson(Person person){
         this.person = person;
     }
-
+    */
     public String getCompanyEmail(){
         return companyEmail;
     }
 
-    public String setCompanyEmail(Person person) {
-        return person.getName()+"."+person.getSurname()+"@company.com";
+    public void setCompanyEmail() {
+        companyEmail=this.getName()+"."+this.getSurname()+"@company.com";
+    }
+
+    public void setCompanyEmail(String argName, String argSurname) {
+        companyEmail=argName+"."+argSurname+"@company.com";
     }
 
     public LocalDate getDateOfEmployment(){
@@ -119,6 +128,14 @@ public class User extends Person{
 
     public void setPositionLevel(PositionLevel positionLevel){
         this.positionLevel = positionLevel;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     //Additional methods:
