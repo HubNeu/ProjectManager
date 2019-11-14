@@ -1,6 +1,5 @@
 package com.hubert.neubauer.screen.controllers;
 
-import com.hubert.neubauer.Main;
 import com.hubert.neubauer.data.tools.DataStorage;
 import com.hubert.neubauer.data.tools.User;
 import javafx.event.ActionEvent;
@@ -19,6 +18,7 @@ import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class InitScreenController{
@@ -35,29 +35,28 @@ public class InitScreenController{
     private DataStorage dataStore;
 
     public void getInput(ActionEvent ae){
-        //Process input and identify current user so it can be retruned when logging in
         System.out.println("login button pressed");
-        //enteredPassword=userPassword.getText();
-        //enteredLogin=textUsername.getText();
         System.out.println("login pulled successfully, credentials: "+textUsername.getText()+"/"+userPassword.getText());
-        processUser(textUsername.getText(),userPassword.getText());
+        currentUser=processUser(textUsername.getText(),userPassword.getText());
         //System.out.println(currentUser.UserToString());
         textUsername.getScene().getWindow().hide();
     }
 
-    private void processUser(String argLogin, String argPassword) {
+    private User processUser(String argLogin, String argPassword) {
         try{
             User tmp = dataStore.findUserByName(argLogin);
             System.out.println("done finding");
-            if (tmp.getPassword()==argPassword){
-                currentUser = tmp;
+            //DO NOT USE == TO COMPARE STRINGS UNLESS YOU WANNA HAVE A BAD TIME
+            if (tmp.getPassword().equals(argPassword)){
                 System.out.println("done assigning");
+                return tmp;
             }else{
                 throw new Exception("Incorrect credentials!");
             }
         } catch (Exception e){
-            e.getLocalizedMessage();
+            e.getMessage();
         }
+        return null;
     }
 
     public void about() throws IOException {

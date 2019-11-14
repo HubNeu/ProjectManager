@@ -5,6 +5,7 @@
  -fixing showing and hiding
  -event logger and to file saves so you can trace what happened when by which user
  -bug causing login when you press quit
+ -fix login method so that it doesn't use name but username
  */
 package com.hubert.neubauer;
 import com.hubert.neubauer.App.Core.AppMain;
