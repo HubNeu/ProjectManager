@@ -1,6 +1,6 @@
-package com.hubert.neubauer.screen.controllers;
+package com.hubert.neubauer.screen.controllers.deprecated;
 /**
- * TODO: nothing for now, it's done
+ * TODO: add exception throwing catchers or sth and
  */
 
 import com.hubert.neubauer.data.tools.DataStorage;
@@ -15,35 +15,34 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class InitScreenController{
-    @FXML    private TextField textUsername;
-    @FXML    private PasswordField userPassword;
-    @FXML    private Label labelError;
-    @FXML    private Button buttonLogin;
+public class InitScreenControllerOld{
+    @FXML
+    private TextField textUsername;
+    @FXML
+    private PasswordField userPassword;
+    @FXML
+    private Label labelError;
+    @FXML
+    private Button buttonLogin;
 
     private String msgLoggingIn = "Logging in...";
     private String msgError = "Login credentials incorrect or not found!";
     private User currentUser;
+    private String enteredPassword = "";
+    private String enteredLogin = "";
     private DataStorage dataStore;
 
-    public void getInput(ActionEvent ae) {
+    public void getInput(ActionEvent ae) throws Exception{
         //Function fired when you press the login button on initScreen
-        //The critical part of exception handling is the bit in this function
-        try {
-            currentUser = processUser(textUsername.getText(), userPassword.getText());
-            labelError.setText(msgLoggingIn);
-            textUsername.getScene().getWindow().hide();
-        } catch (Exception e) {
-            labelError.setText(msgError);
-        }
-
+        currentUser = processUser(textUsername.getText(), userPassword.getText());
+        textUsername.getScene().getWindow().hide();
     }
 
     private User processUser(String argLogin, String argPassword) throws Exception{
         User tmp = dataStore.findByUsername(argLogin);
-        //System.out.println("done finding the user");
+        System.out.println("done finding the user");
         if (tmp.getPassword().equals(argPassword)) {
-            //System.out.println("done assigning");
+            System.out.println("done assigning");
             return tmp;
         } else {
             throw new Exception("Incorrect credentials!");
@@ -51,7 +50,7 @@ public class InitScreenController{
     }
 
     public void about() throws IOException{
-        //System.out.println("Pressed AboutProgram element");
+        System.out.println("Pressed AboutProgram element");
         AboutProgramBox aboutProgramBox = new AboutProgramBox();
         aboutProgramBox.showAndWait();
     }
@@ -62,6 +61,6 @@ public class InitScreenController{
 
     public void copyDataStorage(DataStorage dataStorage){
         this.dataStore = dataStorage;
-        //System.out.println("DataStore has been copied to InitScreenController");
+        System.out.println("DataStore has been copied to InitScreenController");
     }
 }

@@ -5,7 +5,7 @@
  * -embed "subcontrollers" (example form the tutorial, main scene consists of multiple small screens and controllers)
  */
 
-package com.hubert.neubauer.App.Core;
+package com.hubert.neubauer.app.core;
 
 import com.hubert.neubauer.data.tools.DataStorage;
 import com.hubert.neubauer.data.tools.User;

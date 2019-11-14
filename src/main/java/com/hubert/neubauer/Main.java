@@ -1,14 +1,11 @@
 /**
  * TODO:
- * -when calling one method that throws exception make sure to include it in the handle of the method
- * that way it will never go through with the method and stop halfway softlocking the program;
- * -fixing showing and hiding
  * -event logger and to file saves so you can trace what happened when by which user
- * -proper handling of incorrect data (wrong credentials, no user) so that it doesn't exit but wait for new data
+ * -continue with the NEW data structure
  */
 package com.hubert.neubauer;
 
-import com.hubert.neubauer.App.Core.AppMain;
+import com.hubert.neubauer.app.core.AppMain;
 import com.hubert.neubauer.data.tools.*;
 import com.hubert.neubauer.screen.controllers.InitScreenController;
 import javafx.application.Application;
@@ -20,33 +17,38 @@ import javafx.stage.Stage;
 import java.time.LocalDate;
 
 public class Main extends Application{
-    private AppMain appMain;
     private DataStorage dataStorage = new DataStorage();
-    private Stage window = new Stage();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        System.out.println("Starting...");
+        //System.out.println("Starting...");
         //Initalize data
         dataInit();
+
         //Prepare a window
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/InitScreen.fxml"));
         Parent root = loader.load();
+        Stage window = new Stage();
+        window.setTitle("Project Manager|login");
         window.setScene(new Scene(root));
+
         //get the controller and set it up
         InitScreenController initScreenController = loader.<InitScreenController>getController();
         initScreenController.copyDataStorage(dataStorage);
+
         //show the window and wait until it's filled out
         window.showAndWait();
+
         //get data from the filled controller
         User user = initScreenController.getUser();
-        //sth is wrong here
+
+        //Figure something better to log in
         if (user != null) {
-            appMain = new AppMain(dataStorage, user);
-            System.out.println("Logged in and started...");
+            AppMain appMain = new AppMain(dataStorage, user); //I don't know why it works but it does, A local variable that is not deleted by the garbage collector after exiting a function
+            //System.out.println("Logged in and started...");
         } else {
-            System.out.println("Didn't log in, user is NULL, exiting");
-            System.exit(1234);
+            //System.out.println("Didn't log in, user is NULL, exiting");
+            System.exit(1);
         }
     }
 
@@ -79,9 +81,22 @@ public class Main extends Application{
         dataStorage.addUser(user5);
         dataStorage.addUser(user6);
         dataStorage.extractPersonsFromUsers();
+
     }
 
     public static void main(String[] args){
         launch(args);
     }
 }
+
+/*
+Bugs sorted:
+ * -RESTRUCTURE THE WHOLE PROJECT BECAUSE WHY LEARN AND DO SOMETHING RIGHT IN THE FIRST PLACE, WHEN YOU CAN DO SOMETHING BADLY AND THEN LEARN AND FIX IT, RIGHT?
+ * -fix exception handling and login so that it works primm and proper and so that it can be forgotten about
+ * -when calling one method that throws exception make sure to include it in the handle of the method
+ * that way it will never go through with the method and stop halfway softlocking the program;
+ * -fixing showing and hiding
+ * -proper handling of incorrect data (wrong credentials, no user) so that it doesn't exit but wait for new data
+ * -it logs in a user after closing the window with it's button despite not inputing anything
+ * -many iterations of little bugs, i.e. wrong path, null pointer exceptions when changing scenes, etc.
+ */
