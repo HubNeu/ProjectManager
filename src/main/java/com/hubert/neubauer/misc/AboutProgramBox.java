@@ -15,8 +15,8 @@ import java.io.IOException;
 /**
  * A class to simplify showing Help->about window;
  */
-public class AboutProgramBox {
-    public void show() throws IOException {
+public class AboutProgramBox{
+    public void show() throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/aboutScreen.fxml"));
         //ADD A THING TO MAKE ANY CLICK CLOSE THE APPLICATION
         //I can't be bothered to do it just use the x dummy, you've got a mouse right?
@@ -30,7 +30,8 @@ public class AboutProgramBox {
         miniWindow.show();
         //extract any values if needed
     }
-    public void showAndWait() throws IOException {
+
+    public void showAndWait() throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/aboutScreen.fxml"));
         //ADD A THING TO MAKE ANY CLICK CLOSE THE APPLICATION
         //I can't be bothered to do it just use the x dummy, you've got a mouse right?

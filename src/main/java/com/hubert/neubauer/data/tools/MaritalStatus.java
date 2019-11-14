@@ -4,5 +4,5 @@ public enum MaritalStatus{
     /**
      * Marital status used in class Person
      */
-    MARRIED,SINGLE,DIVORCED,WIDOWED,UNDEFINED;
+    MARRIED, SINGLE, DIVORCED, WIDOWED, UNDEFINED;
 }

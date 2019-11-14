@@ -13,24 +13,26 @@ public class Person{
     private LocalDate dateOfBirth;
     private MaritalStatus status;
     private Occupation previousOccupation;
+
     //functions
     public int autofillAge(LocalDate birthDate){
-        LocalDate now =LocalDate.now();
-        return now.getYear()-dateOfBirth.getYear();
+        LocalDate now = LocalDate.now();
+        return now.getYear() - dateOfBirth.getYear();
     }
+
     //constructors
-    public Person() {
-        this.name="";
-        this.surname="";
-        this.socialSecurityNumber="";
-        this.age=0;
-        this.dateOfBirth=LocalDate.now();
-        this.status=MaritalStatus.UNDEFINED;
-        this.previousOccupation=Occupation.UNDEFINED;
+    public Person(){
+        this.name = "";
+        this.surname = "";
+        this.socialSecurityNumber = "";
+        this.age = 0;
+        this.dateOfBirth = LocalDate.now();
+        this.status = MaritalStatus.UNDEFINED;
+        this.previousOccupation = Occupation.UNDEFINED;
 
     }
 
-    public Person(String name, String surname, String socialSecurityNumber, LocalDate dateOfBirth, MaritalStatus status, Occupation previousOccupation) {
+    public Person(String name, String surname, String socialSecurityNumber, LocalDate dateOfBirth, MaritalStatus status, Occupation previousOccupation){
         this.name = name;
         this.surname = surname;
         this.socialSecurityNumber = socialSecurityNumber;

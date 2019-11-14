@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class MainScreenController{
 
-    public void aboutProgram() throws IOException {
+    public void aboutProgram() throws IOException{
         AboutProgramBox aboutProgramBox = new AboutProgramBox();
         aboutProgramBox.showAndWait();
     }

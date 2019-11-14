@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DataStorage {
+public class DataStorage{
     /**
      * Class that will contain all the necessary data to initialize and run the app. Placed here in place of data base as
      * I need to first build the app then worry about data storage. (Then I can just use Hibernate and this class to store
@@ -20,52 +20,58 @@ public class DataStorage {
      * -alertxboxes for when it throws errors
      */
 
-    //Declarations
     private List<User> users = new ArrayList<>();
     private List<Person> persons = new ArrayList<>();
-    //End of declarations
-
-    public DataStorage(){
-    }
 
     public List<User> getUsers(){
         return Collections.unmodifiableList(users);
     }
-    public User findUserByName (String arg) throws Exception{
+
+    public User findUserByName(String arg) throws Exception{
         //Did I mention I'm not a software dev student?
-        for (int i=0;i<users.size();i++){
-            if (users.get(i).getName().equals(arg)){
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getName().equals(arg)) {
                 return users.get(i);
             }
         }
         throw new Exception();
     }
+
     public void addUser(User arg){
         users.add(arg);
     }
+
     public void deleteUserByUser(User arg){
         users.remove(arg);
     }
-    public void deleteUserByIndex(User arg) throws Exception{users.remove(users.indexOf(arg));}
+
+    public void deleteUserByIndex(User arg) throws Exception{
+        users.remove(users.indexOf(arg));
+    }
+
     public User getUserByIndex(int arg){
         return users.get(arg);
     }
-    public void getUserByID(int arg) {
+
+    public void getUserByID(int arg){
         //ToDo: Add UserID, notes in User class
     }
-    public void addPerson(Person arg) {persons.add(arg);}
-    public User findByUsername(String argUsername){
-        for (int i=0;i<users.size();i++){
-            if (users.get(i).getUsername().equals(argUsername)){
+
+    public void addPerson(Person arg){
+        persons.add(arg);
+    }
+
+    public User findByUsername(String argUsername) throws Exception{
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUsername().equals(argUsername)) {
                 return users.get(i);
             }
         }
-        //TODO: throw an error or sth
-        return null;
+        throw new Exception("No such user found!");
     }
 
-    public void extractAllPersons() {
-        for (int i=0;i<users.size();i++){
+    public void extractPersonsFromUsers(){
+        for (int i = 0; i < users.size(); i++) {
             this.persons.add(users.get(i).getPerson());
         }
     }

@@ -1,5 +1,5 @@
 /**
- *TODO:
+ * TODO:
  * -properly set up data passed here, make sure it's using it by reference
  * -make the layout in scene builder
  * -embed "subcontrollers" (example form the tutorial, main scene consists of multiple small screens and controllers)
@@ -17,19 +17,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AppMain {
+public class AppMain{
     private Stage mainWindow = new Stage();
     private String mainScreenPath = "/fxml/MainScreen.fxml";
-    private DataStorage originalData,changedData; //changed data to save changes in, original to... do something, I'll figure it out or delete later
+    private DataStorage originalData, changedData; //changed data to save changes in, original to... do something, I'll figure it out or delete later
     private MainScreenController mainScreenController;
     private User currentUser;
 
-    public AppMain(DataStorage argData, User argUser) throws IOException {
+    public AppMain(DataStorage argData, User argUser) throws IOException{
         this.originalData = argData;
         //do NOT change the following
-        changedData=originalData;
+        changedData = originalData;
         //end of do NOT change
-        this.currentUser=argUser;
+        this.currentUser = argUser;
         FXMLLoader loader = new FXMLLoader(getClass().getResource(mainScreenPath));
         Parent root = loader.load();
         mainScreenController = loader.getController();

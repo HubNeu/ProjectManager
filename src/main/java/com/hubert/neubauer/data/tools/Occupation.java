@@ -4,5 +4,5 @@ public enum Occupation{
     /**
      * Class used in class Person
      */
-    UNEMPLOYED,STUDENT,PUPIL,EMPLOYED,UNDEFINED;
+    UNEMPLOYED, STUDENT, PUPIL, EMPLOYED, UNDEFINED;
 }
