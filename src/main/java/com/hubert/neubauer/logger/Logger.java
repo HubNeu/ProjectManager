@@ -5,5 +5,6 @@ package com.hubert.neubauer.logger;
  */
 
 public class Logger {
+    private String fileName,storagePath;
 
 }

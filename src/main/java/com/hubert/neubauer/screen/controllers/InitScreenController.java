@@ -1,25 +1,19 @@
 package com.hubert.neubauer.screen.controllers;
+/**
+ * TODO: add exception throwing catchers or sth and
+ */
 
 import com.hubert.neubauer.data.tools.DataStorage;
 import com.hubert.neubauer.data.tools.User;
+import com.hubert.neubauer.misc.AboutProgramBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-import javax.xml.crypto.Data;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.sql.SQLOutput;
-import java.util.Arrays;
 
 public class InitScreenController{
     @FXML private TextField textUsername;
@@ -34,45 +28,27 @@ public class InitScreenController{
     private String enteredLogin="";
     private DataStorage dataStore;
 
-    public void getInput(ActionEvent ae){
-        System.out.println("login button pressed");
-        System.out.println("login pulled successfully, credentials: "+textUsername.getText()+"/"+userPassword.getText());
+    public void getInput(ActionEvent ae) throws Exception{
+        //Function fired when you press the login button on initScreen
         currentUser=processUser(textUsername.getText(),userPassword.getText());
-        //System.out.println(currentUser.UserToString());
         textUsername.getScene().getWindow().hide();
     }
 
-    private User processUser(String argLogin, String argPassword) {
-        try{
-            User tmp = dataStore.findUserByName(argLogin);
-            System.out.println("done finding");
-            //DO NOT USE == TO COMPARE STRINGS UNLESS YOU WANNA HAVE A BAD TIME
+    private User processUser(String argLogin, String argPassword) throws Exception {
+            User tmp = dataStore.findByUsername(argLogin);
+            System.out.println("done finding the user");
             if (tmp.getPassword().equals(argPassword)){
                 System.out.println("done assigning");
                 return tmp;
-            }else{
+            }else {
                 throw new Exception("Incorrect credentials!");
             }
-        } catch (Exception e){
-            e.getMessage();
-        }
-        return null;
     }
 
     public void about() throws IOException {
         System.out.println("Pressed AboutProgram element");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/aboutScreen.fxml"));
-        //ADD A THING TO MAKE ANY CLICK CLOSE THE APPLICATION
-        //I can't be bothered to do it just use the x dummy, you've got a mouse right?
-        Stage miniWindow = new Stage();
-        miniWindow.initModality(Modality.APPLICATION_MODAL);
-        miniWindow.setAlwaysOnTop(true);
-        miniWindow.setResizable(false);
-        Parent root = loader.load();
-        miniWindow.setScene(new Scene(root));
-        //AboutScreenController aboutScreenController = loader.getController();
-        miniWindow.showAndWait();
-        //extract any values if needed
+        AboutProgramBox aboutProgramBox = new AboutProgramBox();
+        aboutProgramBox.showAndWait();
     }
 
     public User getUser() {

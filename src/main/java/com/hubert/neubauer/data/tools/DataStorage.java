@@ -54,6 +54,15 @@ public class DataStorage {
         //ToDo: Add UserID, notes in User class
     }
     public void addPerson(Person arg) {persons.add(arg);}
+    public User findByUsername(String argUsername){
+        for (int i=0;i<users.size();i++){
+            if (users.get(i).getUsername().equals(argUsername)){
+                return users.get(i);
+            }
+        }
+        //TODO: throw an error or sth
+        return null;
+    }
 
     public void extractAllPersons() {
         for (int i=0;i<users.size();i++){

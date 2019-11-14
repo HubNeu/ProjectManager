@@ -1,11 +1,10 @@
 /**
- TODO:
- -when calling one method that throws exception make sure to include it in the handle of the method
- that way it will never go through with the method and stop halfway effectively softlocking the program;
- -fixing showing and hiding
- -event logger and to file saves so you can trace what happened when by which user
- -bug causing login when you press quit
- -fix login method so that it doesn't use name but username
+ *TODO:
+ * -when calling one method that throws exception make sure to include it in the handle of the method
+ * that way it will never go through with the method and stop halfway softlocking the program;
+ * -fixing showing and hiding
+ * -event logger and to file saves so you can trace what happened when by which user
+ * -proper handling of incorrect data (wrong credentials, no user) so that it doesn't exit but wait for new data
  */
 package com.hubert.neubauer;
 import com.hubert.neubauer.App.Core.AppMain;
@@ -40,8 +39,7 @@ public class Main extends Application {
         window.showAndWait();
         //get data from the filled controller
         User user = initScreenController.getUser();
-//        System.out.println(user.getUsername());
-        //fire up appCore or quit
+        //sth is wrong here
         if (user!=null) {
             appMain = new AppMain(dataStorage, user);
             System.out.println("Logged in and started...");
