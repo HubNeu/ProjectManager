@@ -2,6 +2,7 @@
  * TODO:
  * -event logger and to file saves so you can trace what happened when by which user
  * -continue with the NEW data structure
+ * -add an icon and generally fix the appearance, but that's low priority
  */
 package com.hubert.neubauer;
 
