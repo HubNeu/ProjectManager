@@ -1,4 +1,4 @@
-package com.hubert.neubauer.data.tools;
+package com.hubert.neubauer.data.tools.users;
 
 import java.util.ArrayList;
 import java.util.Collections;

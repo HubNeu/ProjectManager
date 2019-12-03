@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hubert.neubauer.screen.controllers.TopButtonsController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hubert.neubauer.screen.controllers.TopButtonsController">
    <children>
-      <ToggleButton mnemonicParsing="false" onAction="#openFileMenu" prefHeight="20.0" prefWidth="100.0" text="Plik">
+      <ToggleButton mnemonicParsing="false" onAction="#openFileMenu" prefHeight="20.0" prefWidth="100.0" text="Mapa">
          <toggleGroup>
             <ToggleGroup fx:id="topToggleButtonGroup" />
          </toggleGroup>
       </ToggleButton>
-      <ToggleButton mnemonicParsing="false" onAction="#openEditMenu" prefHeight="20.0" prefWidth="100.0" text="Edytuj" toggleGroup="$topToggleButtonGroup" />
+      <ToggleButton mnemonicParsing="false" onAction="#openEditMenu" prefHeight="20.0" prefWidth="100.0" text="Zadania" toggleGroup="$topToggleButtonGroup" />
       <ToggleButton mnemonicParsing="false" onAction="#openRaportsMenu" prefHeight="20.0" prefWidth="100.0" text="Raporty" toggleGroup="$topToggleButtonGroup" />
    </children>
    <padding>

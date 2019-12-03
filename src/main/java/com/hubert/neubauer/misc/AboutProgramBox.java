@@ -28,7 +28,6 @@ public class AboutProgramBox{
         miniWindow.setScene(new Scene(root));
         //AboutScreenController aboutScreenController = loader.getController();
         miniWindow.show();
-        //extract any values if needed
     }
 
     public void showAndWait() throws IOException{

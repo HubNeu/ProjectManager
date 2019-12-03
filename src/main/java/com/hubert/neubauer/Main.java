@@ -3,16 +3,29 @@
  * -event logger and to file saves so you can trace what happened when by which user
  * -continue with the NEW data structure
  * -add an icon and generally fix the appearance, but that's low priority
+ * -Clogger?
+ * -Add a resource bundle with gui strings
+ * -add an action listener to the password box so that after hitting enter you can log in
+ * -add write some tests
+ * TOFINISH:
+ * -finish classes: update,task, project, milestone
+ * -Add main application will look like the advanced template from scene builder, 3 panels side by side, left if structure, middle is the map, right is the Details that show after clicking on a component.
  */
 package com.hubert.neubauer;
 
 import com.hubert.neubauer.app.core.AppMain;
-import com.hubert.neubauer.data.tools.*;
+import com.hubert.neubauer.data.tools.users.*;
 import com.hubert.neubauer.screen.controllers.InitScreenController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -63,12 +76,6 @@ public class Main extends Application{
         Person person4 = new Person("Wojciech", "Nowakowski", "00004", LocalDate.of(1995, 06, 13), MaritalStatus.SINGLE, Occupation.STUDENT);
         Person person5 = new Person("Kamila", "Drozd", "00005", LocalDate.of(1971, 04, 29), MaritalStatus.MARRIED, Occupation.UNEMPLOYED);
         Person person6 = new Person("Stefan", "Malecki", "00006", LocalDate.of(1980, 10, 9), MaritalStatus.SINGLE, Occupation.EMPLOYED);
-        /*dataStorage.addPerson(person1);
-        dataStorage.addPerson(person2);
-        dataStorage.addPerson(person3);
-        dataStorage.addPerson(person4);
-        dataStorage.addPerson(person5);
-        dataStorage.addPerson(person6);*/
         User user1 = new User(person1, "qwe", LocalDate.of(2018, 03, 03), 5678.65, PositionLevel.JUNIOR);
         User user2 = new User(person2, "qwe", LocalDate.of(2010, 7, 03), 12000.65, PositionLevel.SENIOR);
         User user3 = new User(person3, "qwe", LocalDate.of(2016, 10, 03), 4500.65, PositionLevel.MID);
@@ -86,14 +93,35 @@ public class Main extends Application{
     }
 
     public static void main(String[] args){
-        launch(args);
+        try{
+            launch(args);
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Critical exception");
+            alert.setHeaderText("Program has encountered a problem that cannot be fixed.");
+            alert.setContentText("Reinstall program or revert any changes made to it manually.\nIf this problem persists, contact support.");
+            Label label = new Label("The stacktrace is:");
+            TextArea textArea = new TextArea(e.getStackTrace().toString());
+            textArea.setMaxWidth(Double.MAX_VALUE);
+            textArea.setMaxHeight(Double.MAX_VALUE);
+            GridPane.setVgrow(textArea, Priority.ALWAYS);
+            GridPane.setHgrow(textArea,Priority.ALWAYS);
+            GridPane exeptionContext = new GridPane();
+            exeptionContext.setMaxWidth(Double.MAX_VALUE);
+            exeptionContext.add(label,0,0);
+            exeptionContext.add(textArea,0,1);
+            alert.getDialogPane().setExpandableContent(exeptionContext);
+            alert.showAndWait();
+            Platform.exit();
+            System.exit(-1);
+        }
     }
 }
 
 /*
-Bugs sorted:
+Bugs fixed and tasks completed:
  * -RESTRUCTURE THE WHOLE PROJECT BECAUSE WHY LEARN AND DO SOMETHING RIGHT IN THE FIRST PLACE, WHEN YOU CAN DO SOMETHING BADLY AND THEN LEARN AND FIX IT, RIGHT?
- * -fix exception handling and login so that it works primm and proper and so that it can be forgotten about
+ * -fix exception handling and login so that it works prim and proper and so that it can be forgotten about
  * -when calling one method that throws exception make sure to include it in the handle of the method
  * that way it will never go through with the method and stop halfway softlocking the program;
  * -fixing showing and hiding

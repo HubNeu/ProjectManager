@@ -7,8 +7,8 @@
 
 package com.hubert.neubauer.app.core;
 
-import com.hubert.neubauer.data.tools.DataStorage;
-import com.hubert.neubauer.data.tools.User;
+import com.hubert.neubauer.data.tools.users.DataStorage;
+import com.hubert.neubauer.data.tools.users.User;
 import com.hubert.neubauer.screen.controllers.MainScreenController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

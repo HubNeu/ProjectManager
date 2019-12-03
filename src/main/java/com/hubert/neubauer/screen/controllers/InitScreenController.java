@@ -3,8 +3,8 @@ package com.hubert.neubauer.screen.controllers;
  * TODO: nothing for now, it's done
  */
 
-import com.hubert.neubauer.data.tools.DataStorage;
-import com.hubert.neubauer.data.tools.User;
+import com.hubert.neubauer.data.tools.users.DataStorage;
+import com.hubert.neubauer.data.tools.users.User;
 import com.hubert.neubauer.misc.AboutProgramBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
