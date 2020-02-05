@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 
@@ -63,5 +65,13 @@ public class InitScreenController{
     public void copyDataStorage(DataStorage dataStorage){
         this.dataStore = dataStorage;
         //System.out.println("DataStore has been copied to InitScreenController");
+    }
+
+    public void checkForEnter(KeyEvent keyEvent){
+        if (keyEvent.getCode()== KeyCode.ENTER){
+            System.out.println("Pressed enter");
+            //getInput(new ActionEvent());    //This works. Why?
+            getInput(null); //since I'm not actually using ActionEvents here
+        }
     }
 }

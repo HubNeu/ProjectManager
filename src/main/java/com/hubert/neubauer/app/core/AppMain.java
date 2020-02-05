@@ -3,6 +3,7 @@
  * -properly set up data passed here, make sure it's using it by reference
  * -make the layout in scene builder
  * -embed "subcontrollers" (example form the tutorial, main scene consists of multiple small screens and controllers)
+ * -add tree table view for directory-like visuals
  */
 
 package com.hubert.neubauer.app.core;
@@ -34,7 +35,8 @@ public class AppMain{
         Parent root = loader.load();
         mainScreenController = loader.getController();
         mainWindow.setScene(new Scene(root));
-        mainWindow.show();// or showAndWait(); not sure yet how to process all of this and which it will require
+        mainWindow.setMaximized(true);
+        mainWindow.show();
     }
 
 }

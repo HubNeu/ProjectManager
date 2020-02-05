@@ -43,12 +43,13 @@ public class Main extends Application{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/InitScreen.fxml"));
         Parent root = loader.load();
         Stage window = new Stage();
-        window.setTitle("Project Manager|login");
+        window.setTitle("Project Manager | login");
         window.setScene(new Scene(root));
 
         //get the controller and set it up
         InitScreenController initScreenController = loader.<InitScreenController>getController();
         initScreenController.copyDataStorage(dataStorage);
+        window.setResizable(false);
 
         //show the window and wait until it's filled out
         window.showAndWait();

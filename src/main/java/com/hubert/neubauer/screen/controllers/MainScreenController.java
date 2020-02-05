@@ -2,6 +2,7 @@ package com.hubert.neubauer.screen.controllers;
 
 import com.hubert.neubauer.misc.AboutProgramBox;
 import javafx.fxml.FXML;
+import javafx.scene.control.SplitPane;
 
 import java.io.IOException;
 
