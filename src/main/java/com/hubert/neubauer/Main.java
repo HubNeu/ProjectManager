@@ -1,37 +1,43 @@
 /**
+ * THIS CODE IS SHIT, DON'T LOOK AT IT
+ *
  * TODO:
+ * -next: complete project structure and add it as an example
  * -event logger and to file saves so you can trace what happened when by which user
  * -continue with the NEW data structure
  * -add an icon and generally fix the appearance, but that's low priority
- * -Clogger?
  * -Add a resource bundle with gui strings
- * -add an action listener to the password box so that after hitting enter you can log in
  * -add write some tests
- * TOFINISH:
+ * -fix the catching of exceptions
+ * TO FINISH:
  * -finish classes: update,task, project, milestone
  * -Add main application will look like the advanced template from scene builder, 3 panels side by side, left if structure, middle is the map, right is the Details that show after clicking on a component.
  */
 package com.hubert.neubauer;
 
-import com.hubert.neubauer.app.core.AppMain;
-import com.hubert.neubauer.data.tools.users.*;
+import com.hubert.neubauer.data.tools.user.*;
+import com.hubert.neubauer.misc.ErrorBox;
 import com.hubert.neubauer.screen.controllers.InitScreenController;
+import com.hubert.neubauer.screen.controllers.MainScreenController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class Main extends Application{
     private DataStorage dataStorage = new DataStorage();
+    private FXMLLoader loader;
+    private Parent root;
+    private Stage window;
+    private InitScreenController initScreenController;
+    private String initScreenControllerPath="/fxml/InitScreen.fxml";
+    private MainScreenController mainScreenController;
+    private String mainScreenControllerPath="/fxml/MainScreen.fxml";
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -40,9 +46,9 @@ public class Main extends Application{
         dataInit();
 
         //Prepare a window
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/InitScreen.fxml"));
-        Parent root = loader.load();
-        Stage window = new Stage();
+        loader = new FXMLLoader(getClass().getResource(initScreenControllerPath));
+        root = loader.load();
+        window = new Stage();
         window.setTitle("Project Manager | login");
         window.setScene(new Scene(root));
 
@@ -59,8 +65,11 @@ public class Main extends Application{
 
         //Figure something better to log in
         if (user != null) {
-            AppMain appMain = new AppMain(dataStorage, user); //I don't know why it works but it does, A local variable that is not deleted by the garbage collector after exiting a function
+            //AppMain appMain = new AppMain(dataStorage, user); //I don't know why it works but it does, A local variable that is not deleted by the garbage collector after exiting a function
             //System.out.println("Logged in and started...");
+
+            //Ditched a whole class for this function as it's not needed
+            appMain(dataStorage, user);
         } else {
             //System.out.println("Didn't log in, user is NULL, exiting");
             System.exit(1);
@@ -97,25 +106,21 @@ public class Main extends Application{
         try{
             launch(args);
         }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Critical exception");
-            alert.setHeaderText("Program has encountered a problem that cannot be fixed.");
-            alert.setContentText("Reinstall program or revert any changes made to it manually.\nIf this problem persists, contact support.");
-            Label label = new Label("The stacktrace is:");
-            TextArea textArea = new TextArea(e.getStackTrace().toString());
-            textArea.setMaxWidth(Double.MAX_VALUE);
-            textArea.setMaxHeight(Double.MAX_VALUE);
-            GridPane.setVgrow(textArea, Priority.ALWAYS);
-            GridPane.setHgrow(textArea,Priority.ALWAYS);
-            GridPane exeptionContext = new GridPane();
-            exeptionContext.setMaxWidth(Double.MAX_VALUE);
-            exeptionContext.add(label,0,0);
-            exeptionContext.add(textArea,0,1);
-            alert.getDialogPane().setExpandableContent(exeptionContext);
-            alert.showAndWait();
+            ErrorBox eb = new ErrorBox(e);
+            eb.showAndWait();
             Platform.exit();
             System.exit(-1);
         }
+    }
+
+    public void appMain(DataStorage argData, User argUser) throws IOException{
+        loader = new FXMLLoader(getClass().getResource(mainScreenControllerPath));
+        root = loader.load();
+        mainScreenController = loader.getController();
+        mainScreenController.initialize(argData,argUser);
+        window.setScene(new Scene(root));
+        window.setMaximized(true);
+        window.show();
     }
 }
 
@@ -129,4 +134,6 @@ Bugs fixed and tasks completed:
  * -proper handling of incorrect data (wrong credentials, no user) so that it doesn't exit but wait for new data
  * -it logs in a user after closing the window with it's button despite not inputing anything
  * -many iterations of little bugs, i.e. wrong path, null pointer exceptions when changing scenes, etc.
+ * -add an action listener to the password box so that after hitting enter you can log in
+ * -clogger?-declined
  */

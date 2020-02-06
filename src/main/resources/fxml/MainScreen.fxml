@@ -3,16 +3,8 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hubert.neubauer.screen.controllers.MainScreenController">
    <children>
       <VBox>
          <children>
@@ -30,7 +22,7 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Pomoc">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem fx:id="menuItemAbout" mnemonicParsing="false" text="About" />
                   </items>
                 </Menu>
               </menus>
@@ -40,11 +32,7 @@
       </VBox>
       <SplitPane fx:id="splitPaneMarker" dividerPositions="0.3" VBox.vgrow="ALWAYS">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0">
-               <children>
-                  <Label text="Project structure" />
-               </children>
-            </AnchorPane>
+            <TreeView fx:id="treeViewPane" />
             <ScrollPane fitToHeight="true" fitToWidth="true">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0">

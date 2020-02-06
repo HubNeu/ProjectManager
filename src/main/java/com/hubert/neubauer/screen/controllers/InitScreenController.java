@@ -3,8 +3,8 @@ package com.hubert.neubauer.screen.controllers;
  * TODO: nothing for now, it's done
  */
 
-import com.hubert.neubauer.data.tools.users.DataStorage;
-import com.hubert.neubauer.data.tools.users.User;
+import com.hubert.neubauer.data.tools.user.DataStorage;
+import com.hubert.neubauer.data.tools.user.User;
 import com.hubert.neubauer.misc.AboutProgramBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -69,7 +69,7 @@ public class InitScreenController{
 
     public void checkForEnter(KeyEvent keyEvent){
         if (keyEvent.getCode()== KeyCode.ENTER){
-            System.out.println("Pressed enter");
+            //System.out.println("Pressed enter");
             //getInput(new ActionEvent());    //This works. Why?
             getInput(null); //since I'm not actually using ActionEvents here
         }

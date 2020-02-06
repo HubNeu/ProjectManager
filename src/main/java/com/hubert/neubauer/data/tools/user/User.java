@@ -1,4 +1,4 @@
-package com.hubert.neubauer.data.tools.users;
+package com.hubert.neubauer.data.tools.user;
 
 import java.time.LocalDate;
 

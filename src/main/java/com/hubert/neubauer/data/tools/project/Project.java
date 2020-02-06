@@ -1,6 +1,6 @@
-package com.hubert.neubauer.data.tools.projects;
+package com.hubert.neubauer.data.tools.project;
 
-import com.hubert.neubauer.data.tools.users.User;
+import com.hubert.neubauer.data.tools.user.User;
 
 import java.time.LocalDate;
 import java.util.List;

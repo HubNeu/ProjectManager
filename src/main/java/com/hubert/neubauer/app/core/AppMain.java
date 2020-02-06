@@ -4,12 +4,13 @@
  * -make the layout in scene builder
  * -embed "subcontrollers" (example form the tutorial, main scene consists of multiple small screens and controllers)
  * -add tree table view for directory-like visuals
+ * -fix error box
  */
 
 package com.hubert.neubauer.app.core;
 
-import com.hubert.neubauer.data.tools.users.DataStorage;
-import com.hubert.neubauer.data.tools.users.User;
+import com.hubert.neubauer.data.tools.user.DataStorage;
+import com.hubert.neubauer.data.tools.user.User;
 import com.hubert.neubauer.screen.controllers.MainScreenController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
